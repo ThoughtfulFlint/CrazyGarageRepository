@@ -1,3 +1,6 @@
+//ci sono anche io #davide
+
+
 const int pinDir=3;
 const int pinStep=4;
 const int dPause=50;
