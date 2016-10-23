@@ -1,3 +1,7 @@
+/*Codice ancora primordiale e non funzionante, la teoria sarebbe quello di comandare a posizione dello stepper tramite MPU6050
+ * -Riguardare per intero
+ */
+
 #include <Wire.h>
 
 #define MPU 0x68  // I2C address of the MPU-6050

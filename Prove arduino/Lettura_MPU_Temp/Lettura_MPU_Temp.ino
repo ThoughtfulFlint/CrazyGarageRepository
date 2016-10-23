@@ -1,4 +1,5 @@
-// MPU-6050 Short Example Sketch
+/* Semplice file per la letture dei valori generati dal MPU6050 senza nessuna correzione o conversione.
+ */
 #include<Wire.h>
 const int MPU=0x68;  // I2C address of the MPU-6050
 int16_t AcX,AcY,AcZ,Tmp,GyX,GyY,GyZ;
@@ -31,8 +32,8 @@ void loop(){
   Serial.print("Gyroscope: ");
   Serial.print("\tX = "); Serial.print(GyX);
   Serial.print("\t| Y = "); Serial.print(GyY);
-  Serial.print("\t| Z = "); Serial.println(GyZ);/*
-  Serial.print("Temperature: "); Serial.print(Tmp/340.00+36.53); Serial.println(" C ");*/
+  Serial.print("\t| Z = "); Serial.println(GyZ);
+  Serial.print("Temperature: "); Serial.print(Tmp/340.00+36.53); Serial.println(" C ");
   Serial.println(" ");
   delay(333);
 }
