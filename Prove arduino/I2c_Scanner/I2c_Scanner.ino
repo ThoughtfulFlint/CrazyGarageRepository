@@ -1,25 +1,22 @@
+/*Semplice Codice per la letture degli indirizzi dei dispositivi I2C collegati ad arduino*/
+
 #include <Wire.h>
  
- 
-void setup()
-{
+void setup(){
   Wire.begin();
- 
   Serial.begin(9600);
   Serial.println("\nI2C Scanner");
 }
  
  
-void loop()
-{
+void loop(){
   byte error, address;
   int nDevices;
  
   Serial.println("Scanning...");
  
   nDevices = 0;
-  for(address = 1; address < 127; address++ ) 
-  {
+  for(address = 1; address < 127; address++ ){
     // The i2c_scanner uses the return value of
     // the Write.endTransmisstion to see if
     // a device did acknowledge to the address.

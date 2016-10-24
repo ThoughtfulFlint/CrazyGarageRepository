@@ -1,6 +1,8 @@
-// MPU6050 & Servo
-// http://www.giuseppecaccavale.it/
-// Giuseppe Caccavale
+/*Sito riferimento: http://www.giuseppecaccavale.it/
+ * Codice primordiale per la lettura e conversione in dati capibili dall'umano del MPU6050
+ * -Ancora da rivedere e perfezionare i calcolo dello Yaw.
+ * -Aggiungere lettura per angoli maggiori di |90|
+  */
 
 #include <SPI.h>
 #include <Wire.h>
