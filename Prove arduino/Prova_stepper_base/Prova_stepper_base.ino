@@ -1,6 +1,11 @@
+<<<<<<< HEAD
+//ci sono anche io #davide
+
+=======
 /*Semplice controlo di uno stepper con inserimento dei vaolri diretammente nel codice prima ancora di essere caricato,
  * all'interno presenta alcuni errori.
  */
+>>>>>>> origin/master
 
 const int pinDir=3;
 const int pinStep=4;
