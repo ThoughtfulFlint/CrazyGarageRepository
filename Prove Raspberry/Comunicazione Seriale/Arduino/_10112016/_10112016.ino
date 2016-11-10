@@ -35,7 +35,8 @@ void loop() {
         Serial.print("Led-"); 
         break;  
       case 'C':
-       Serial.print("Cica          
+       Serial.print("Cicalino-");
+       break;         
     }
     switch(incoming[1]) {
       case 'R':  
@@ -66,6 +67,11 @@ void loop() {
         digitalWrite(ledV,LOW);
         delay(250);
         break;   
+      case 'C':
+        Serial.println("Suono");
+        tone(9, 10, 700);
+        delay(500);
+        tone(9, 2000, 700);
      }
   }
 }
