@@ -67,11 +67,20 @@ void loop() {
         digitalWrite(ledV,LOW);
         delay(250);
         break;   
-      case 'C':
-        Serial.println("Suono");
-        tone(9, 10, 700);
+      case 'A':
+        Serial.println("Accensione");
+        tone(9, 500, 100);
+        delay(100);
+        tone(9, 300, 200);
+        delay(100);
+        tone(9, 500, 400);
+        break;
+      case 'E' :
+        Serial.println("Errore");
+        tone(9, 200, 100);
         delay(500);
-        tone(9, 2000, 700);
+        tone(9, 200, 500);
+        break;
      }
   }
 }
