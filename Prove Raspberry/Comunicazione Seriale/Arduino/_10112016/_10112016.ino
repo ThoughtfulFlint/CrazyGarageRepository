@@ -1,13 +1,64 @@
+#define N 4  //number of leds
 const int ledR = 5;
 const int ledV = 7;
 const int ledG = 6;
 const int ledB = 4;
 const int cic = 9;
+char parola;
 char mem;
 char incoming[2];
-int i=0;  
+int i;  
+char vect[4]={ledV,ledG,ledR,ledB}; //Those array has all the led in order from left to right.
 //const int pushButton = 8;
 
+// Turning-On and Off- led for n milliseconds
+  void turnOnOff(char led, int t1,int t2){ 
+    digitalWrite(led,HIGH);
+    delay(t1);
+    digitalWrite(led,LOW);
+    delay(t2);
+  }
+
+//Blinking function for leds
+void blink(char net){
+ if(net == 'R'){              //blinking from left to right
+  for(i=0; i<N; i++)
+    turnOnOff(vect[i],450,200);
+ }
+ else{                        //blinking from right to left
+   if(net == 'L'){
+    for(i=N; i>=0; i--)
+      turnOnOff(vect[i],450,200);
+      }
+
+ }
+}
+
+//Function to send a string in serial port
+void SendString(){
+byte n;
+ Serial.println("Inserire parola da inviare sulla seriale:");
+ delay(50);
+ while(Serial.available()<=0)
+       n=Serial.read();
+       Serial.write(n);     //Da sistemare!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+       delay(50);
+}
+
+
+//All led on function
+void AllOn(){
+ digitalWrite(ledV,HIGH);
+ digitalWrite(ledG,HIGH);
+ digitalWrite(ledR,HIGH);
+ digitalWrite(ledB,HIGH);
+ delay(500);
+ digitalWrite(ledV,LOW);
+ digitalWrite(ledG,LOW);
+ digitalWrite(ledR,LOW);
+ digitalWrite(ledB,LOW);
+ delay(250);
+}
 
 void setup() {
   Serial.begin(9600);
@@ -28,7 +79,8 @@ void loop() {
     incoming[0] = Serial.read();
     incoming[1] = Serial.read();
     delay(2);
-    while (Serial.available() > 0){ char t = Serial.read(); delay(2); }
+     while (Serial.available() > 0){ char t = Serial.read(); delay(2); }
+    
 
     switch(incoming[0]) {
       case 'L':
@@ -36,44 +88,44 @@ void loop() {
         break;  
       case 'C':
        Serial.print("Cicalino-");
-       break;         
+       break;  
+      case 'R':
+       Serial.print("Stringa-");
+       break;
+      case 'B':
+       Serial.print("Lampeggia-");
+       break; 
     }
+    
   if(incoming[0]=='L'){
     switch(incoming[1]) {
       case 'R':  
         Serial.println("Rosso");
-        digitalWrite(ledR,HIGH);
-        delay(500);
-        digitalWrite(ledR,LOW);
-        delay(250);
+        turnOnOff(ledR,500,250);
         break;
       case 'B':
         Serial.println("Blu");
-        digitalWrite(ledB,HIGH);
-        delay(500);
-        digitalWrite(ledB,LOW);
-        delay(250);
+        turnOnOff(ledB,500,250);
         break;
       case 'G':
         Serial.println("Giallo");
-        digitalWrite(ledG,HIGH);
-        delay(500);
-        digitalWrite(ledG,LOW);
-        delay(250);
+        turnOnOff(ledG,500,250);
         break;
       case 'V':
         Serial.println("Verde");
-        digitalWrite(ledV,HIGH);
-        delay(500);
-        digitalWrite(ledV,LOW);
-        delay(250);
+        turnOnOff(ledV,500,250);
         break;   
+      case 'A':
+        Serial.println("TuttiAccesi");
+        AllOn();
+        break;
       default: Serial.println("Unknown");
       }
   }
+  
      if(incoming[0]=='C'){
        switch(incoming[1]) {
-      case 'A':
+      case '1':
         Serial.println("Accensione");
         tone(9, 500, 100);
         delay(100);
@@ -81,7 +133,7 @@ void loop() {
         delay(100);
         tone(9, 500, 400);
         break;
-      case 'E' :
+      case '2' :
         Serial.println("Errore");
         tone(9, 200, 100);
         delay(500);
@@ -90,5 +142,31 @@ void loop() {
       default: Serial.println("Unknown");
      }
   }
+  
+    if(incoming[0]=='R'){
+      switch(incoming[1]){
+        case 'P':
+         Serial.println("Scrivi qualcosa!");
+         SendString();
+         break;
+        default: Serial.println("Unknown");
+         
+        }
+      }
+      
+    if(incoming[0]=='B'){
+      switch(incoming[1]){
+        case 'R':
+         Serial.println("DXtoSX");       
+         blink('R');
+         break;
+        case 'L':
+         Serial.println("SXtoDX");
+         blink('L');
+         break;
+        default: Serial.println("Unknown");
+        }
+      }
+
 }
 }
