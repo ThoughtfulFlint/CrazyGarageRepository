@@ -38,6 +38,7 @@ void loop() {
        Serial.print("Cicalino-");
        break;         
     }
+  if(incoming[0]=='L'){
     switch(incoming[1]) {
       case 'R':  
         Serial.println("Rosso");
@@ -67,6 +68,11 @@ void loop() {
         digitalWrite(ledV,LOW);
         delay(250);
         break;   
+      default: Serial.println("Unknown");
+      }
+  }
+     if(incoming[0]=='C'){
+       switch(incoming[1]) {
       case 'A':
         Serial.println("Accensione");
         tone(9, 500, 100);
@@ -81,7 +87,8 @@ void loop() {
         delay(500);
         tone(9, 200, 500);
         break;
+      default: Serial.println("Unknown");
      }
   }
 }
-
+}
